@@ -1,23 +1,15 @@
-name: Python CI
+name: Manual Trigger Demo
 
-on: [push]
+# Trigger manually
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Your Name'
+        required: true
 
 jobs:
-  test:
+  greet:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v3
-
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: 3.11
-
-    - name: Install dependencies
-      run: |
-        pip install flask pandas pytest
-
-    - name: Run tests
-      run: |
-        pytest
+      - run: echo "Hello ${{ github.event.inputs.name }}! Welcome to GitHub Actions."
