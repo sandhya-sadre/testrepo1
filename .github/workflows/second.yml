@@ -1,0 +1,15 @@
+name: Conditional Execution Demo
+
+on:	
+  push:
+    branches:
+      - main
+
+jobs:
+  run-on-main:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print message
+        run: echo "This job runs ONLY when pushed to main branch"
